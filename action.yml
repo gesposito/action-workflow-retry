@@ -1,13 +1,33 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: "Retry failed GitHub Actions workflows"
+description: "Retry failed GitHub Actions workflows"
+
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  max_attemps:
+    description: "number of attempts"
+    default: 3
+
+  github_token:
+    description: "GITHUB_TOKEN"
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+
+  firebase_project_id:
+    description: "Firebase projectId for keeping track of retried attempts"
+    required: true
+
+  firebase_api_key:
+    description: "Firebase apiKey for keeping track of retried attempts"
+    required: true
+
+  owner:
+    required: true
+
+  repo:
+    required: true
+
+  run_id:
+    description: "Workflow id for the run event from GitHub"
+    required: true
+
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"
