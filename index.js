@@ -14,21 +14,15 @@ async function run() {
     const githubToken = core.getInput("github_token");
     const firebaseProjectId = core.getInput("firebase_project_id");
     const firebaseApiKey = core.getInput("firebase_api_key");
-    const workflow_run = core.getInput("workflow_run");
+    const owner = core.getInput("owner");
+    const repo = core.getInput("repo");
+    const run_id = core.getInput("run_id");
 
     // Initialize Firebase
     firebase.initializeApp({
       projectId: firebaseProjectId,
       apiKey: firebaseApiKey,
     });
-
-    const {
-      id: run_id,
-      repository: {
-        owner: { login: owner },
-        name: repo,
-      },
-    } = workflow_run;
 
     const { Octokit } = require("@octokit/core");
     const octokit = new Octokit({ auth: githubToken });
