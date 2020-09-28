@@ -17,9 +17,7 @@ jobs:
       - name: Retry
         uses: gesposito/action-workflow-retry@v1
         with:
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
-          # There's currently an issue with GitHub's API `rerun` with `GITHUB_TOKEN`
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           firebase_project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
           firebase_api_key: ${{ secrets.FIREBASE_API_KEY }}
           owner: ${{ github.event.workflow_run.repository.owner.login }}
